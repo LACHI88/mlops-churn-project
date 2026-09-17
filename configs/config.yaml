@@ -13,7 +13,7 @@ model:
   registry_name: "churn-classifier"
 
 mlflow:
-  tracking_uri: "mlruns"
+  tracking_uri: "sqlite:///mlflow.db"
   experiment_name: "churn-exp"
 
 training:

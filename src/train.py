@@ -54,6 +54,7 @@ def train() -> str:
             sk_model=best_model,
             artifact_path="model",
             registered_model_name=cfg.model.registry_name,
+            skops_trusted_types=["sklearn.tree._tree.Tree"],
         )
 
         logger.info("Run MLflow : %s", run.info.run_id)
