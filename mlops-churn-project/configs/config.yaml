@@ -1,0 +1,26 @@
+# Configuration centralisée du pipeline — rien en dur dans le code
+data:
+  url: "https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv"
+  raw_path: "data/raw/telco_churn.csv"
+  processed_path: "data/processed/telco_churn_processed.csv"
+  target: "Churn"
+  id_column: "customerID"
+  test_size: 0.2
+  random_state: 42
+
+model:
+  type: "random_forest"          # random_forest | logistic_regression
+  registry_name: "churn-classifier"
+
+mlflow:
+  tracking_uri: "mlruns"
+  experiment_name: "churn-exp"
+
+training:
+  cv_folds: 5
+  param_grid:
+    random_forest:
+      model__n_estimators: [100, 200]
+      model__max_depth: [5, 10, null]
+    logistic_regression:
+      model__C: [0.1, 1.0, 10.0]
